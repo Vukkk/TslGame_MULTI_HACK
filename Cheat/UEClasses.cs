@@ -150,7 +150,7 @@ namespace BATTLEGROUNDS_EXERNAL
 		[FieldOffset(0x170)]
 		public IntPtr pRootComponent;
 
-		[FieldOffset(0x0394)]
+		[FieldOffset(0x039C)]
 		public float BaseEyeHeight;
 
 		[FieldOffset(0x2C0)]
@@ -223,7 +223,7 @@ namespace BATTLEGROUNDS_EXERNAL
 		{
 			get
 			{
-				return this.Id >= 60700 && this.Id <= 60800;
+				return this.Id >= 63000 && this.Id <= 63100;
 			}
 		}
 		public bool IsDroppedItemInteractionComponent
@@ -804,13 +804,13 @@ namespace BATTLEGROUNDS_EXERNAL
 	public struct UGameInstance
 	{
 		[FieldOffset(0x38)]
-		public IntPtr pULocalPlayer; // TArray<class ULocalPlayer*>, deref twice
+		public IntPtr pULocalPlayers; // TArray<class ULocalPlayer*>, deref twice
 
 		public ULocalPlayer LocalPlayer
 		{
 			get
 			{
-				IntPtr pLocalPlayer = M.Read<IntPtr>(this.pULocalPlayer);
+				IntPtr pLocalPlayer = M.Read<IntPtr>(this.pULocalPlayers);
 				var result = M.Read<ULocalPlayer>(pLocalPlayer);
 				result.pBase = pLocalPlayer;
 				return result;
@@ -863,13 +863,13 @@ namespace BATTLEGROUNDS_EXERNAL
 	[StructLayout(LayoutKind.Explicit)]
 	public struct APlayerController
 	{
-		[FieldOffset(0x0390)]
+		[FieldOffset(0x3F8)]
 		public IntPtr pLocalPlayer;
 
-		[FieldOffset(0x03B8)]
+		[FieldOffset(0x3C0)]
 		public FRotator ControlRotation;
 
-		[FieldOffset(0x0420)]
+		[FieldOffset(0x0428)]
 		public IntPtr pPlayerCameraManager;
 
 		public APlayerCameraManager PlayerCameraManager

@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using SharpDX;
+using SharpDX.Direct2D1;
+using SharpDX.DXGI;
+using SharpDX.Mathematics.Interop;
+using System;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-using SharpDX;
-using SharpDX.DXGI;
-using SharpDX.Direct2D1;
-using SharpDX.Mathematics.Interop;
-
-using System.Threading;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace BATTLEGROUNDS_EXERNAL
 {
