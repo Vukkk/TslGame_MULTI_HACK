@@ -78,7 +78,7 @@ namespace BATTLEGROUNDS_EXERNAL
                         var vecLocalLocation = localplayer.Location;
 
                         //DrawText($"BodyHitImpact: {localplayer.WeaponProcessor.EquippedWeapons.ReadValue(0, true).WeaponConfig.PhysicalBodyHitImpactPower}", 50, 50, brushWhite, fontFactory, fontESP, device);
-                        
+
                         #region RADAR
                         int radarX = 20;
                         int radarY = 140;
@@ -89,7 +89,7 @@ namespace BATTLEGROUNDS_EXERNAL
                         // TODO: INTEGRATE INTO MINIMAP
                         if (CheatSettings.RadarESP)
                         {
-                            
+
 
                             var radarOuterRectangle = new RawRectangleF(radarX, radarY, radarX + radarSize, radarY + radarSize);
                             var radarRectangle = new RawRectangleF(radarX + radarBorder, radarY + radarBorder, radarX + radarSize - radarBorder, radarY + radarSize - radarBorder);
@@ -124,7 +124,7 @@ namespace BATTLEGROUNDS_EXERNAL
                             }
                         }
                         #endregion
-                        
+
                         #region VEHICLE ESP
                         if (CheatSettings.VehicleESP)
                         {
@@ -198,7 +198,7 @@ namespace BATTLEGROUNDS_EXERNAL
                             }
                         }
                         #endregion
-                        
+
                         #region LOOT ESP
                         // Doesnt work
                         if (CheatSettings.LootESP)
@@ -229,6 +229,9 @@ namespace BATTLEGROUNDS_EXERNAL
                         #endregion
 
                         #region PlAYER LOOP
+#if DEBUG
+                        CheatSettings.RadarESP = true;
+#endif
                         if (CheatSettings.DistanceESP || CheatSettings.RadarESP || CheatSettings.LineESP)
                         {
                             var vecLocalEyeLocation = localplayer.EyeLocation;
@@ -283,10 +286,10 @@ namespace BATTLEGROUNDS_EXERNAL
                         }
                         #endregion
                     }
-                    
+
                     // DRAW END
                     device.EndDraw();
-                    
+
                     Thread.Sleep(1000 / 60);
                 }
             });
@@ -301,16 +304,16 @@ namespace BATTLEGROUNDS_EXERNAL
             marg.Bottom = this.Height;
             Win32.DwmExtendFrameIntoClientArea(this.Handle, ref marg);
         }
-        
+
         public SharpDX.DirectWrite.TextLayout TextLayout(string szText, SharpDX.DirectWrite.Factory factory, SharpDX.DirectWrite.TextFormat font) =>
             new SharpDX.DirectWrite.TextLayout(factory, szText, font, float.MaxValue, float.MaxValue);
 
         public void DrawText(string szText, int x, int y, SharpDX.Direct2D1.Brush foregroundBroush, SharpDX.DirectWrite.Factory fontFactory, SharpDX.DirectWrite.TextFormat font, WindowRenderTarget device)
         {
             var tempTextLayout = TextLayout(szText, fontFactory, font);
-            
+
             device.DrawTextLayout(new RawVector2(x, y), tempTextLayout, foregroundBroush, DrawTextOptions.NoSnap);
-            
+
             tempTextLayout.Dispose();
         }
 
@@ -336,7 +339,7 @@ namespace BATTLEGROUNDS_EXERNAL
 
             Screenlocation.X = ScreenCenterX + vTransformed.X * (ScreenCenterX / (float)Math.Tan(FovAngle * (float)Math.PI / 360)) / vTransformed.Z;
             Screenlocation.Y = ScreenCenterY - vTransformed.Y * (ScreenCenterX / (float)Math.Tan(FovAngle * (float)Math.PI / 360)) / vTransformed.Z;
-            
+
             return true;
         }
 
